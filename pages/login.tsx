@@ -4,7 +4,8 @@ import react, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
-import { setLoggedIn } from '@/store/authSlice';
+import { setLoggedIn, setRole } from '@/store/authSlice';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const Login = () => {
         { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
       );
       Cookies.set('token', response.data.token);
+      const decoded = jwt.decode(response.data.token) as JwtPayload;
+      if (decoded) {
+        const roles = decoded.Role.split(',').map((role) => role.replace('[', '').replace(']', ''));
+        dispatch(setRole(roles)); // dispatch setRole action
+      }
       dispatch(setLoggedIn(true)); // dispatch setLoggedIn action
       router.push('/');
     } catch (error) {

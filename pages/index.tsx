@@ -1,12 +1,11 @@
 import Layout from '@/components/layouts/Layout';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
 
 export default function Home() {
+
   return (
     <Layout>
       <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <h1 className='text-4xl font-bold text-gray-800 mb-8'>Welcome to HR ASSISTANT!</h1>
+        <h1 className='text-4xl font-bold text-gray-800 mb-8'>Welcome to the HR ASSISTANT!</h1>
         <div className='text-gray-700 mb-8'>
           <p className='text-lg leading-7'>
             HR ASSISTANT is your all-in-one solution for HR professionals looking to streamline their data management

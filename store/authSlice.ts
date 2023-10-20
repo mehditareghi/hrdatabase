@@ -6,6 +6,7 @@ type AuthState = {
 
 const initialState: AuthState = {
   isLoggedIn: false,
+  role: [],
 };
 
 const authSlice = createSlice({
@@ -15,9 +16,12 @@ const authSlice = createSlice({
     setLoggedIn(state, action: PayloadAction<boolean>) {
       state.isLoggedIn = action.payload;
     },
+    setRole: (state, action: PayloadAction<string[]>) => {
+      state.role = action.payload;
+    },
   },
 });
 
-export const { setLoggedIn } = authSlice.actions;
+export const { setLoggedIn, setRole } = authSlice.actions;
 
 export default authSlice.reducer;
