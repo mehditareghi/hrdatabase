@@ -3,8 +3,11 @@ import { useRouter } from 'next/router';
 import react, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { setLoggedIn } from '@/store/authSlice';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -19,7 +22,8 @@ const Login = () => {
         { email, password },
         { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
       );
-      Cookies.set('token', response.data.token.result);
+      Cookies.set('token', response.data.token);
+      dispatch(setLoggedIn(true)); // dispatch setLoggedIn action
       router.push('/');
     } catch (error) {
       console.error(error);
