@@ -27,7 +27,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://185.104.189.135:5280/api/city/getall', {
+        const response = await axios.get('http://185.104.189.135:5280/api/university/getall', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -45,9 +45,9 @@ return (
   <Layout>
     <AdminNav />
     <div className='flex justify-between items-center mb-2'>
-      <h1 className='text-4xl font-bold text-gray-800'>Cities</h1>
+      <h1 className='text-4xl font-bold text-gray-800'>Universities</h1>
       <Link
-        href='/admin-dashboard/cities/add'
+        href='/admin-dashboard/universities/add'
         className='bg-blue-100 hover:bg-blue-200 p-2 py-1 rounded-md text-sm text-blue-600 hover:text-blue-800'
       >
         Add New Record

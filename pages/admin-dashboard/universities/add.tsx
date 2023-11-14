@@ -10,7 +10,7 @@ type FormData = {
   name: string;
 };
 
-const AddCity = () => {
+const AddUniversity = () => {
   const token = Cookies.get('token');
   const {
     register,
@@ -21,14 +21,14 @@ const AddCity = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.post('http://185.104.189.135:5280/api/city/add', data, {
+      await axios.post('http://185.104.189.135:5280/api/university/add', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       reset()
       toast.success('Record added successfully.');
-    } catch (error) {
+    } catch (error: any) {
       toast.error('Something went wrong.');
     }
   };
@@ -37,7 +37,7 @@ return (
   <Layout>
     <AdminNav />
     <div>
-      <h1 className='text-4xl font-bold text-gray-800 mb-4'>Add City</h1>
+      <h1 className='text-4xl font-bold text-gray-800 mb-4'>Add University</h1>
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
         <div>
           <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='name'>
@@ -48,7 +48,7 @@ return (
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='name'
             type='text'
-            placeholder='City name'
+            placeholder='University name'
           />
           {errors.name && <p className='text-red-500 text-xs italic'>Please fill out this field.</p>}
         </div>
@@ -66,4 +66,4 @@ return (
 );
 };
 
-export default WithAuth(AddCity, ['Admin']);
+export default WithAuth(AddUniversity, ['Admin']);
