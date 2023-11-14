@@ -9,10 +9,10 @@ const Table = ({ columns, data }: { columns: Column[]; data: any[] }) => {
   return (
     <table {...getTableProps()} className='table-auto w-full'>
       <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()} className='px-4 py-2 font-semibold text-left'>
+        {headerGroups.map((headerGroup, i) => (
+          <tr {...headerGroup.getHeaderGroupProps()} key={i}>
+            {headerGroup.headers.map((column, i) => (
+              <th {...column.getHeaderProps()} className='px-4 py-2 font-semibold text-left' key={i}>
                 {column.render('Header')}
               </th>
             ))}
@@ -20,12 +20,12 @@ const Table = ({ columns, data }: { columns: Column[]; data: any[] }) => {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => (
-                <td {...cell.getCellProps()} className='border px-4 py-2'>
+            <tr {...row.getRowProps()} key={i} className='even:bg-blue-100 odd:bg-white'>
+              {row.cells.map((cell, i) => (
+                <td {...cell.getCellProps()} className='border px-4 py-2' key={i}>
                   {cell.render('Cell')}
                 </td>
               ))}

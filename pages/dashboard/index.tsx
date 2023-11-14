@@ -1,7 +1,7 @@
 import Table from '@/components/Table';
+import WithAuth from '@/components/WithAuth';
 import Layout from '@/components/layouts/Layout';
 import React from 'react';
-
 
 const columns: Column[] = [
   {
@@ -41,4 +41,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default WithAuth(DashboardPage, ['HrManager']);
