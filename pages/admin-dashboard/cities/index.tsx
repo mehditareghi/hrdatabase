@@ -3,7 +3,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
-import { addHookAliases } from 'next/dist/server/require-hook';
+import { Column } from 'react-table';
+import Link from 'next/link';
 
 const columns: Column[] = [
   {
@@ -18,26 +19,8 @@ const columns: Column[] = [
 
 const AdminDashboard = () => {
   const token = Cookies.get('token');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const addCity = async () => {
-    try {
-      await axios.post(
-        'http://185.104.189.135:5280/api/city/add',
-        {
-          name: 'Tehran',
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +41,7 @@ const AdminDashboard = () => {
 
   return (
     <Layout>
-      <button onClick={addCity}>Add City</button>
+      <Link href='/admin-dashboard/cities/add'>Add City</Link>
       {isLoading ? <p>Loading data...</p> : <Table columns={columns} data={data} />}
     </Layout>
   );

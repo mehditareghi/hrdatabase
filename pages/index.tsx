@@ -14,7 +14,7 @@ export default function Home() {
             needed.
           </p>
           <p className='text-lg leading-7 mt-4'>
-            Whether you're managing employee records, contact information, or other vital HR data, our platform provides
+            Whether you&apos;re managing employee records, contact information, or other vital HR data, our platform provides
             a user-friendly and practical interface, making your HR processes more organized and effective. Join us in
             simplifying HR management and enhancing your ability to connect with and support your people.
           </p>
@@ -28,7 +28,7 @@ export default function Home() {
             <li className='mb-2'>Customization: Tailor HR ASSISTANT to your personal HR needs.</li>
             <li className='mb-2'>Data Insights: Gain valuable career insights from your personal HR data.</li>
             <li className='mb-2'>Mobile Accessibility: Stay connected and organized on the go.</li>
-            <li className='mb-2'>Customer Support: We're here to assist you in managing your HR information.</li>
+            <li className='mb-2'>Customer Support: We&apos;re here to assist you in managing your HR information.</li>
             <li className='mb-2'>Affordability: Competitive pricing options to meet your budget.</li>
           </ul>
         </div>

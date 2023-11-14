@@ -26,7 +26,7 @@ const Login = () => {
       Cookies.set('token', response.data.token);
       const decoded = jwt.decode(response.data.token) as JwtPayload;
       if (decoded) {
-        const roles = decoded.Role.split(',').map((role) => role.replace('[', '').replace(']', ''));
+        const roles = decoded.Role.split(',').map((role: string) => role.replace('[', '').replace(']', ''));
         dispatch(setRole(roles)); // dispatch setRole action
       }
       dispatch(setLoggedIn(true)); // dispatch setLoggedIn action

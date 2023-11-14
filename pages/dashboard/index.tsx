@@ -1,6 +1,7 @@
 import Table from '@/components/Table';
 import WithAuth from '@/components/WithAuth';
 import Layout from '@/components/layouts/Layout';
+import { Column } from 'react-table';
 import React from 'react';
 
 const columns: Column[] = [
