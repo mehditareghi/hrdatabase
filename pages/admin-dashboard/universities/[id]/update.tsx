@@ -5,29 +5,56 @@ import Cookies from 'js-cookie';
 import WithAuth from '@/components/WithAuth';
 import AdminNav from '@/components/AdminNav';
 import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 type FormData = {
   name: string;
 };
 
-const AddCity = () => {
+const AdminDashboard = () => {
+  const router = useRouter();
+  const { id } = router.query;
   const token = Cookies.get('token');
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-    reset,
-  } = useForm<FormData>();
+  } = useForm();
+
+  useEffect(() => {
+    // Fetch the current data of the record
+    // Replace this with your actual API call
+    const fetchData = async () => {
+      if (!id) return;
+      try {
+        const response = await axios.get(`http://185.104.189.135:5280/api/university/get?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }); // replace with your API endpoint
+        const record = response.data;
+
+        // Set the initial values of the form fields
+        setValue('name', record.name);
+        // setValue for other fields...
+      } catch (error) {
+        toast.error('Error fetching data');
+      }
+    };
+
+    fetchData();
+  }, [id, setValue, token]);
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.post('http://185.104.189.135:5280/api/city/add', data, {
+      await axios.put(`http://185.104.189.135:5280/api/university/update?id=${id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      reset();
-      toast.success('Record added successfully.');
+      toast.success('Record updated successfully.');
     } catch (error) {
       toast.error('Something went wrong.');
     }
@@ -37,7 +64,7 @@ const AddCity = () => {
     <Layout>
       <AdminNav />
       <div>
-        <h1 className='text-4xl font-bold text-gray-800 mb-4'>Add City</h1>
+        <h1 className='text-4xl font-bold text-gray-800 mb-4'>Update University Record</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
           <div>
             <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='name'>
@@ -66,4 +93,4 @@ const AddCity = () => {
   );
 };
 
-export default WithAuth(AddCity, ['Admin']);
+export default WithAuth(AdminDashboard, ['Admin']);

@@ -26,6 +26,36 @@ const AdminNav = () => {
                 >
                   Companies
                 </Link>
+                <Link
+                  href='/admin-dashboard/industries'
+                  className='text-blue-500 border border-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md text-sm font-medium'
+                >
+                  Industries
+                </Link>
+                <Link
+                  href='/admin-dashboard/competencies'
+                  className='text-blue-500 border border-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md text-sm font-medium'
+                >
+                  Competencies
+                </Link>
+                <Link
+                  href='/admin-dashboard/educationfields'
+                  className='text-blue-500 border border-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md text-sm font-medium'
+                >
+                  Education Fields
+                </Link>
+                <Link
+                  href='/admin-dashboard/languages'
+                  className='text-blue-500 border border-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md text-sm font-medium'
+                >
+                  Languages
+                </Link>
+                <Link
+                  href='/admin-dashboard/jobs'
+                  className='text-blue-500 border border-blue-500 hover:bg-blue-100 px-2 py-1 rounded-md text-sm font-medium'
+                >
+                  Jobs
+                </Link>
               </div>
             </div>
           </div>

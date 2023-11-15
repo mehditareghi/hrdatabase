@@ -12,7 +12,7 @@ import { toast } from 'react-hot-toast';
 const AdminDashboard = () => {
   const deleteRecord = async (id: any) => {
     try {
-      await axios.delete(`http://185.104.189.135:5280/api/university/delete?id=${id}`, {
+      await axios.delete(`http://185.104.189.135:5280/api/job/delete?id=${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +38,7 @@ const AdminDashboard = () => {
     {
       Header: 'Update',
       Cell: ({ row: { original } }) => (
-        <Link href={`/admin-dashboard/universities/${original.id}/update`}>
+        <Link href={`/admin-dashboard/jobs/${original.id}/update`}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6 text-blue-500 hover:text-blue-700'
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://185.104.189.135:5280/api/university/getall', {
+        const response = await axios.get('http://185.104.189.135:5280/api/job/getall', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -99,9 +99,9 @@ const AdminDashboard = () => {
     <Layout>
       <AdminNav />
       <div className='flex justify-between items-center mb-2'>
-        <h1 className='text-4xl font-bold text-gray-800'>Universities</h1>
+        <h1 className='text-4xl font-bold text-gray-800'>Jobs</h1>
         <Link
-          href='/admin-dashboard/cities/add'
+          href='/admin-dashboard/jobs/add'
           className='bg-blue-100 hover:bg-blue-200 p-2 py-1 rounded-md text-sm text-blue-600 hover:text-blue-800'
         >
           Add New Record

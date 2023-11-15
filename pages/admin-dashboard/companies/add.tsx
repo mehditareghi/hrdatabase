@@ -5,23 +5,44 @@ import Cookies from 'js-cookie';
 import WithAuth from '@/components/WithAuth';
 import AdminNav from '@/components/AdminNav';
 import { toast } from 'react-hot-toast';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
 
 type FormData = {
   name: string;
+  industryId: string;
 };
 
-const AddCity = () => {
+const AddCompany = () => {
+  const [industries, setIndustries] = useState([]);
+  useEffect(() => {
+    // Fetch the industries here and update the state
+    const fetchIndustries = async () => {
+      try {
+        const response = await axios.get('http://185.104.189.135:5280/api/industry/getall');
+        setIndustries(response.data);
+      } catch (error) {
+        toast.error('Error fetching industries');
+      }
+    };
+
+    fetchIndustries();
+  }, []);
+
+  const industryOptions = industries.map((industry) => ({ value: industry.id, label: industry.name }));
+
   const token = Cookies.get('token');
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.post('http://185.104.189.135:5280/api/city/add', data, {
+      await axios.post('http://185.104.189.135:5280/api/company/add', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -32,12 +53,17 @@ const AddCity = () => {
       toast.error('Something went wrong.');
     }
   };
+  const handleSelectChange = (selectedOption: any) => {
+    if (selectedOption) {
+      setValue('industryId', selectedOption.value);
+    }
+  };
 
   return (
     <Layout>
       <AdminNav />
       <div>
-        <h1 className='text-4xl font-bold text-gray-800 mb-4'>Add City</h1>
+        <h1 className='text-4xl font-bold text-gray-800 mb-4'>Add Company</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
           <div>
             <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='name'>
@@ -48,9 +74,22 @@ const AddCity = () => {
               className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
               id='name'
               type='text'
-              placeholder='City name'
+              placeholder='Company name'
             />
             {errors.name && <p className='text-red-500 text-xs italic'>Please fill out this field.</p>}
+          </div>
+          <div>
+            <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='industryId'>
+              Industry
+            </label>
+            <Select
+              {...register('industryId', { required: true })}
+              options={industryOptions}
+              className='basic-single'
+              classNamePrefix='select'
+              onChange={handleSelectChange}
+            />
+            {errors.industryId && <p className='text-red-500 text-xs italic'>Please fill out this field.</p>}
           </div>
           <div>
             <button
@@ -66,4 +105,4 @@ const AddCity = () => {
   );
 };
 
-export default WithAuth(AddCity, ['Admin']);
+export default WithAuth(AddCompany, ['Admin']);
