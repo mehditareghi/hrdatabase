@@ -7,6 +7,7 @@ import AdminNav from '@/components/AdminNav';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { BASE_URL } from '@/utils/constants';
 
 type FormData = {
   name: string;
@@ -29,7 +30,7 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       if (!id) return;
       try {
-        const response = await axios.get(`http://185.104.189.135:5280/api/language/get?id=${id}`, {
+        const response = await axios.get(`${BASE_URL}/api/language/get?id=${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -49,7 +50,7 @@ const AdminDashboard = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.put(`http://185.104.189.135:5280/api/language/update?id=${id}`, data, {
+      await axios.put(`${BASE_URL}/api/language/update?id=${id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

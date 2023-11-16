@@ -8,11 +8,12 @@ import Link from 'next/link';
 import AdminNav from '@/components/AdminNav';
 import WithAuth from '@/components/WithAuth';
 import { toast } from 'react-hot-toast';
+import { BASE_URL } from '@/utils/constants';
 
 const AdminDashboard = () => {
   const deleteRecord = async (id: any) => {
     try {
-      await axios.delete(`http://185.104.189.135:5280/api/industry/delete?id=${id}`, {
+      await axios.delete(`${BASE_URL}/api/industry/delete?id=${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -81,7 +82,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://185.104.189.135:5280/api/industry/getall', {
+        const response = await axios.get(`${BASE_URL}/api/industry/getall`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

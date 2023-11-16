@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { setLoggedIn, setRole } from '@/store/authSlice';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { BASE_URL } from '@/utils/constants';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'http://185.104.189.135:5280/api/accountidentity/login',
+        `${BASE_URL}/api/accountidentity/login`,
         { email, password },
         { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
       );

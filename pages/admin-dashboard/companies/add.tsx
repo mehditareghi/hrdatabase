@@ -7,6 +7,7 @@ import AdminNav from '@/components/AdminNav';
 import { toast } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { BASE_URL } from '@/utils/constants';
 
 type FormData = {
   name: string;
@@ -19,7 +20,7 @@ const AddCompany = () => {
     // Fetch the industries here and update the state
     const fetchIndustries = async () => {
       try {
-        const response = await axios.get('http://185.104.189.135:5280/api/industry/getall');
+        const response = await axios.get(`${BASE_URL}/api/industry/getall`);
         setIndustries(response.data);
       } catch (error) {
         toast.error('Error fetching industries');
@@ -42,7 +43,7 @@ const AddCompany = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.post('http://185.104.189.135:5280/api/company/add', data, {
+      await axios.post(`${BASE_URL}/api/company/add`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

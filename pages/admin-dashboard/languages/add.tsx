@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import WithAuth from '@/components/WithAuth';
 import AdminNav from '@/components/AdminNav';
 import { toast } from 'react-hot-toast';
+import { BASE_URL } from '@/utils/constants';
 
 type FormData = {
   name: string;
@@ -21,7 +22,7 @@ const AddLanguage = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.post('http://185.104.189.135:5280/api/language/add', data, {
+      await axios.post(`${BASE_URL}/api/language/add`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

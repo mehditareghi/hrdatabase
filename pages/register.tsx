@@ -2,6 +2,7 @@ import Layout from '@/components/layouts/Layout';
 import { useRouter } from 'next/router';
 import react, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '@/utils/constants';
 
 const Register = () => {
   const router = useRouter();
@@ -13,7 +14,7 @@ const Register = () => {
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://185.104.189.135:5280/api/accountidentity/register', {
+      await axios.post(`${BASE_URL}/api/accountidentity/register`, {
         firstname,
         lastname,
         email,

@@ -8,17 +8,17 @@ import Link from 'next/link';
 import AdminNav from '@/components/AdminNav';
 import WithAuth from '@/components/WithAuth';
 import { toast } from 'react-hot-toast';
+import { BASE_URL } from '@/utils/constants';
 
 const AdminDashboard = () => {
   const deleteRecord = async (id: any) => {
     try {
-      await axios.delete(`http://185.104.189.135:5280/api/city/delete?id=${id}`, {
+      await axios.delete(`${BASE_URL}/api/city/delete?id=${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }); // replace with your API endpoint
+      });
       toast.success('Record deleted successfully');
-      // update the table data
       const updatedData = data.filter((record) => record.id !== id);
       setData([...updatedData]);
     } catch (error) {
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://185.104.189.135:5280/api/city/getall', {
+        const response = await axios.get(`${BASE_URL}/api/city/getall`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
