@@ -84,7 +84,7 @@ const Layout = ({ children }: any) => {
     ); */
 
   return (
-    <div className='min-h-screen bg-gray-100'>
+    <div className='min-h-screen'>
       <nav className='flex justify-between w-full bg-white text-gray-800 shadow-sm py-4 px-6'>
         <Link href='/' className='text-2xl text-gray-800'>
           <span className='text-blue-500 font-bold'>HR</span> ASSISTANT

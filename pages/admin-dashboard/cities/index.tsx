@@ -9,6 +9,7 @@ import AdminNav from '@/components/AdminNav';
 import WithAuth from '@/components/WithAuth';
 import { toast } from 'react-hot-toast';
 import { BASE_URL } from '@/utils/constants';
+import { Pencil, Trash } from '@phosphor-icons/react';
 
 const AdminDashboard = () => {
   const deleteRecord = async (id: any) => {
@@ -39,21 +40,7 @@ const AdminDashboard = () => {
       Header: 'Update',
       Cell: ({ row: { original } }) => (
         <Link href={`/admin-dashboard/cities/${original.id}/update`}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6 text-blue-500 hover:text-blue-700'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 19l9 2-2-9-9-9-9 9 2 9z' />
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M16 11a4 4 0 11-8 0 4 4 0 018 0zm-3 0a1 1 0 11-2 0 1 1 0 012 0z'
-            />
-          </svg>
+          <Pencil className='bg-blue-100 hover:bg-blue-200 p-1 text-2xl rounded-md text-blue-600 hover:text-blue-800' />
         </Link>
       ),
     },
@@ -61,15 +48,7 @@ const AdminDashboard = () => {
       Header: 'Delete',
       Cell: ({ row: { original } }) => (
         <button onClick={() => deleteRecord(original.id)}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6 text-red-500 hover:text-red-700'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18L18 6M6 6l12 12' />
-          </svg>
+          <Trash className='bg-red-100 hover:bg-red-200 p-1 text-2xl rounded-md text-red-600 hover:text-red-800' />
         </button>
       ),
     },

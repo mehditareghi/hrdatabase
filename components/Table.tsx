@@ -60,7 +60,7 @@ const Table = ({ columns, data }: { columns: Column[]; data: any[] }) => {
         {page.map((row: any, i: any) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()} key={i} className='even:bg-blue-100 odd:bg-white'>
+            <tr {...row.getRowProps()} key={i} className='even:bg-blue-50 odd:bg-white'>
               {row.cells.map((cell: any, j: any) => (
                 <td
                   {...cell.getCellProps()}

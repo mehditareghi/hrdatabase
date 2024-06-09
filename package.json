@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.0.14",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/jsonwebtoken": "^9.0.4",
     "axios": "^1.5.1",
